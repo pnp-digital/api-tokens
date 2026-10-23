@@ -17,7 +17,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $revoked_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read User $user
+ * @property-read \App\Models\User $user
  * @property-read string $display_token
  * @method static create(array $array)
  */
@@ -44,7 +44,7 @@ class ApiToken extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(\App\Models\User::class);
     }
 
     public function getDisplayTokenAttribute(): string

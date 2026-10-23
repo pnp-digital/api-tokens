@@ -2,7 +2,7 @@
 
 namespace Pipeandpiper\ApiTokens\Services;
 
-use App\Models\ApiToken;
+use Pipeandpiper\ApiTokens\Models\ApiToken;
 use App\Models\User;
 use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Collection;
