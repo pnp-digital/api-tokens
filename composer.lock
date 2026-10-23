@@ -1638,16 +1638,16 @@
         },
         {
             "name": "pnp-digital/generic-api",
-            "version": "1.0.43",
+            "version": "1.0.44",
             "source": {
                 "type": "git",
                 "url": "git@github.com:pnp-digital/generic-api.git",
-                "reference": "fe5659dcf23ad764a0e294773087102ba18999d9"
+                "reference": "0805bfb5f2985e7e526471607f2ddda70344f267"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pnp-digital/generic-api/zipball/fe5659dcf23ad764a0e294773087102ba18999d9",
-                "reference": "fe5659dcf23ad764a0e294773087102ba18999d9",
+                "url": "https://api.github.com/repos/pnp-digital/generic-api/zipball/0805bfb5f2985e7e526471607f2ddda70344f267",
+                "reference": "0805bfb5f2985e7e526471607f2ddda70344f267",
                 "shasum": ""
             },
             "require": {
@@ -1717,20 +1717,20 @@
                 "pnp-digital",
                 "ux"
             ],
-            "time": "2026-10-23T11:06:25+00:00"
+            "time": "2026-10-23T11:23:33+00:00"
         },
         {
             "name": "pnp-digital/generic-laravel-helpers",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "git@github.com:pnp-digital/generic-laravel-helpers.git",
-                "reference": "2acc10728a3c6e465e31931d5610b9e63463d011"
+                "reference": "19b1e2f22980fb0e8e77eb73a808de6f83715ccb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pnp-digital/generic-laravel-helpers/zipball/2acc10728a3c6e465e31931d5610b9e63463d011",
-                "reference": "2acc10728a3c6e465e31931d5610b9e63463d011",
+                "url": "https://api.github.com/repos/pnp-digital/generic-laravel-helpers/zipball/19b1e2f22980fb0e8e77eb73a808de6f83715ccb",
+                "reference": "19b1e2f22980fb0e8e77eb73a808de6f83715ccb",
                 "shasum": ""
             },
             "require": {
@@ -1778,7 +1778,7 @@
                 "pnp-digital",
                 "ux"
             ],
-            "time": "2026-10-23T10:57:58+00:00"
+            "time": "2026-10-23T11:22:25+00:00"
         },
         {
             "name": "pnp-digital/generic-mail",
