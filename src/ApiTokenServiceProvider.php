@@ -7,7 +7,7 @@ use Pipeandpiper\API\Interfaces\ApiTokenResolverInterface;
 use Pipeandpiper\ApiTokens\Console\Commands\GenerateJwtKeys;
 use Pipeandpiper\ApiTokens\Services\ApiTokenResolver;
 
-class ApiTokensServiceProvider extends ServiceProvider
+class ApiTokenServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
