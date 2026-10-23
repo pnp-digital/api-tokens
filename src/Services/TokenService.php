@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace Pipeandpiper\ApiTokens\Services;
 
 use App\Models\ApiToken;
 use App\Models\Client;

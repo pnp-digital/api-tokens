@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace Pipeandpiper\ApiTokens\Services;
 
 use Illuminate\Support\Facades\Cache;
 use Pipeandpiper\API\Interfaces\ApiTokenResolverInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace Pipeandpiper\ApiTokens\Services;
 
 use Lcobucci\JWT\Encoding\JoseEncoder;
 use Lcobucci\JWT\Exception as JwtException;
