@@ -1,6 +1,6 @@
 # API Tokens
 
-JWT authentication for `pnp-digital/generic-api`.
+Ed25519 JWT authentication for `pnp-digital/generic-api`.
 
 ## Installation
 
@@ -10,31 +10,24 @@ composer require pnp-digital/api-tokens
 
 Requires PHP 8.3+, Sodium and Laravel 12+.
 
-## How it works
-
-- **TokenService** — Issues signed JWTs, stores token metadata, lists tokens and handles revocation.
-- **TokenVerificationService** — Validates JWT signatures, timestamps and revocation hashes. Returns the user ID or `null`.
-- **ApiTokenResolver** — Implements Generic API's `ApiTokenResolverInterface`, passing the verified user ID to Generic API.
-- **GenerateJwtKeys** — Artisan command for generating Ed25519 signing keys.
-
-Tokens are signed using Ed25519 and verified using the corresponding public key.
+The package automatically registers its service provider, authentication resolver and database migration.
 
 ## Configuration
 
-Generate a keypair:
+Generate an Ed25519 keypair:
 
 ```bash
 php artisan jwt:generate-keys
 ```
 
-Configure the application issuing tokens:
+Configure the issuing application:
 
 ```dotenv
 JWT_PRIVATE_KEY=<generated-private-key>
 JWT_PUBLIC_KEY=<generated-public-key>
 ```
 
-Other applications sharing the same user IDs only require the public key:
+Applications that only verify tokens but share the same user ids require the same public key:
 
 ```dotenv
 JWT_PUBLIC_KEY=<generated-public-key>
@@ -47,18 +40,16 @@ The package loads `config/api_tokens.php` automatically.
 ```php
 use Pipeandpiper\ApiTokens\Services\TokenService;
 
-$token = app(TokenService::class)->create($user, 'Integration', now()->addYear());
+$service = app(TokenService::class);
+
+$jwt = $service->create($user, 'Integration', now()->addYear());
 ```
 
-The returned JWT must be shown or stored securely when created. The full token cannot be retrieved later.
-
-Token metadata is stored in the application's `api_tokens` table, including a SHA-256 hash and the first and last 10 characters for identification.
+The full JWT is returned only when created. Token metadata, including its SHA-256 hash and first/last 10 characters, is stored in `api_tokens`.
 
 ## Managing tokens
 
 ```php
-$service = app(TokenService::class);
-
 $tokens = $service->list($user);
 $service->revoke($user, $tokenId);
 $revoked = $service->revoked();
@@ -70,20 +61,34 @@ Revoked and expired token records are retained.
 
 The package automatically registers `ApiTokenResolver` with Generic API.
 
-Clients authenticate using:
-
 ```http
 Authorization: Bearer <jwt>
 ```
 
-The resolver verifies the JWT and returns its subject ID. Generic API then retrieves the corresponding user.
-
-No additional authentication guard configuration is required.
+Tokens are verified using the public key. The resolver returns the user ID, which Generic API uses to authenticate the request.
 
 ## Revocation
 
-`TokenVerificationService::verify()` accepts an array of revoked token SHA-256 hashes:
+Applications can optionally implement `TokenRevocationProviderInterface` to supply revoked token SHA-256 hashes.
 
 ```php
-$userId = $verifier->verify($jwt, $revokedHashes);
+use Pipeandpiper\ApiTokens\Interfaces\TokenRevocationProviderInterface;
+
+class TokenRevocationProvider implements TokenRevocationProviderInterface
+{
+    public function revokedHashes(): array
+    {
+        return ['<sha256-hash>', '<sha256-hash>'];
+    }
+}
 ```
+
+Register the implementation in `AppServiceProvider::register()`:
+
+```php
+$this->app->bind(TokenRevocationProviderInterface::class, TokenRevocationProvider::class);
+```
+
+The resolver automatically uses the registered provider. If none is registered, tokens are verified without revocation checks.
+
+The provider can retrieve hashes from the local database, a cache or another application.
