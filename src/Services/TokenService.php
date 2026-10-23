@@ -3,10 +3,7 @@
 namespace Pipeandpiper\ApiTokens\Services;
 
 use App\Models\ApiToken;
-use App\Models\Client;
-use App\Models\ClientSystem;
 use App\Models\User;
-use App\Models\UserObject;
 use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Collection;
 use InvalidArgumentException;
@@ -34,21 +31,7 @@ class TokenService
 
         $now = now()->toDateTimeImmutable();
 
-        $clientIds = UserObject::query()
-            ->where('user_id', $user->id)
-            ->where('user_object_type', Client::class)
-            ->pluck('user_object_id');
-
-        $systemIds = ClientSystem::query()
-            ->whereIn('client_id', $clientIds)
-            ->pluck('system_id')
-            ->unique()
-            ->map(fn ($id) => (string) $id)
-            ->all();
-
         $token = $config->builder()
-            ->issuedBy('1')
-            ->permittedFor(...$systemIds)
             ->relatedTo((string) $user->getKey())
             ->identifiedBy(bin2hex(random_bytes(16)))
             ->issuedAt($now)

@@ -27,12 +27,7 @@ class TokenVerificationService
             return null;
         }
 
-        if (!new Validator()->validate($token,
-            new SignedWith(new Eddsa(), InMemory::base64Encoded(config('api_tokens.public_key'))),
-            new StrictValidAt(new NativeClock()),
-            new IssuedBy('1'),
-            new PermittedFor((string) env('ASSURE_SYSTEM_ID'))
-        )) {
+        if (!new Validator()->validate($token, new SignedWith(new Eddsa(), InMemory::base64Encoded(config('api_tokens.public_key'))), new StrictValidAt(new NativeClock()))) {
             return null;
         }
 
