@@ -2,8 +2,8 @@
 
 namespace Pipeandpiper\ApiTokens\Services;
 
-use Illuminate\Support\Facades\Cache;
 use Pipeandpiper\API\Interfaces\ApiTokenResolverInterface;
+use Pipeandpiper\ApiTokens\Interfaces\TokenRevocationProviderInterface;
 
 readonly class ApiTokenResolver implements ApiTokenResolverInterface
 {
@@ -13,6 +13,7 @@ readonly class ApiTokenResolver implements ApiTokenResolverInterface
 
     public function resolveToken(string $token): ?int
     {
-        return $this->verifier->verify($token, []);
+        $revokedHashes = app()->bound(TokenRevocationProviderInterface::class) ? app(TokenRevocationProviderInterface::class)->revokedHashes() : [];
+        return $this->verifier->verify($token, $revokedHashes);
     }
 }
