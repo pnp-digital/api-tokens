@@ -1,6 +1,0 @@
-/src/node_modules
-/src/public/storage
-/vendor
-.env
-.idea
-*~
