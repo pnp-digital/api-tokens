@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\NewAccessToken;
+
+/**
+ * @extends Builder<User>
+ */
+class UserBuilder extends Builder
+{
+}
+
+/**
+ * @property string $password
+ * @property string|null $two_factor_recovery_codes
+ * @property string|null $two_factor_secret
+ * @property string $email
+ * @property \Carbon\Carbon|string|null $updated_at
+ *
+ * @method static UserBuilder query()
+ * @method NewAccessToken createToken(string $name, array $abilities = ['*'], ?\DateTimeInterface $expiresAt = null)
+ */
+class User extends Authenticatable
+{
+    public string $password;
+    public ?string $two_factor_recovery_codes;
+    public ?string $two_factor_secret;
+    public string $email;
+    public \Carbon\Carbon|string|null $updated_at;
+}

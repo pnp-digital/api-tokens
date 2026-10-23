@@ -1,0 +1,43 @@
+{
+    "name": "pnp-digital/generic-mail",
+    "description": "Laravel package for Generic Mail Templates",
+    "homepage": "https://github.com/pnp-digital/generic-mail",
+    "type": "library",
+    "license": "All rights reserved",
+    "keywords": [
+        "laravel",
+        "package",
+        "mail",
+        "pnp",
+        "pnp-digital"
+    ],
+    "authors": [
+        {
+            "name": "Craig Edwards",
+            "email": "craig@pipeandpiper.co.uk"
+        }
+    ],
+    "require": {
+        "php": ">=8.2 <8.6"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pipeandpiper\\Mail\\GenericMailProvider"
+            ],
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ],
+        "psr-4": {
+            "Pipeandpiper\\Mail\\": "src/"
+        },
+        "files": [
+            "src/Helpers/embed_image.php"
+        ]
+    }
+}

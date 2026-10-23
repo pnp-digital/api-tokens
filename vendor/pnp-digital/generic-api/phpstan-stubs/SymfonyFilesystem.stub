@@ -1,0 +1,10 @@
+<?php
+
+namespace Symfony\Component\Filesystem;
+
+class Filesystem
+{
+    public function remove(string|array $files): void {}
+
+    public function mkdir(string|array $dirs, int $mode = 0777): void {}
+}

@@ -1,0 +1,8 @@
+/src/node_modules
+/src/public/storage
+/vendor
+.env
+.idea
+*~
+.phpunit.result.cache
+tests/clover.xml

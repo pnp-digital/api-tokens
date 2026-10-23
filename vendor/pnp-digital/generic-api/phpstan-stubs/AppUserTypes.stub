@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Models;
+
+/**
+ * @property string $password
+ * @property string|null $two_factor_recovery_codes
+ * @property string|null $two_factor_secret
+ * @property string $email
+ * @property \DateTimeInterface|string|null $updated_at
+ *
+ * @method object{plainTextToken: string} createToken(string $name, array<string> $abilities = ['*'], ?\DateTimeInterface $expiresAt = null)
+ */
+class User
+{
+}

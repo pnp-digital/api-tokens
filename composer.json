@@ -1,0 +1,42 @@
+{
+    "name": "pnp-digital/api-tokens",
+    "description": "JWT token issuance and verification for PNP Digital applications",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.3",
+        "illuminate/support": "^12.0",
+        "lcobucci/jwt": "^5.6",
+        "symfony/clock": "^7.0",
+        "pnp-digital/generic-api": "^1.0"
+    },
+    "repositories": [
+      {
+        "type": "vcs",
+        "url": "git@github.com:pnp-digital/generic-api.git",
+        "no-api": true
+      },
+      {
+        "type": "vcs",
+        "url": "git@github.com:pnp-digital/generic-laravel-helpers.git",
+        "no-api": true
+      },
+      {
+        "type": "vcs",
+        "url": "git@github.com:pnp-digital/generic-mail.git",
+        "no-api": true
+      }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Pipeandpiper\\ApiTokens\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pipeandpiper\\ApiTokens\\ApiTokensServiceProvider"
+            ]
+        }
+    }
+}

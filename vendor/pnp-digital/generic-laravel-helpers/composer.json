@@ -1,0 +1,48 @@
+{
+    "name": "pnp-digital/generic-laravel-helpers",
+    "description": "Laravel package for UX list",
+    "homepage": "https://github.com/pnp-digital/generic-laravel-helpers",
+    "type": "library",
+    "license": "All rights reserved",
+    "keywords": [
+        "laravel",
+        "package",
+        "ux",
+        "pnp",
+        "pnp-digital"
+    ],
+    "authors": [
+        {
+            "name": "Craig Edwards",
+            "email": "craig@pipeandpiper.co.uk"
+        }
+    ],
+    "require": {
+        "php": ">=8.2 <8.6"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pipeandpiper\\GenericHelperProvider"
+            ],
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ],
+        "psr-4": {
+            "Pipeandpiper\\": "src/"
+        },
+        "files": [
+            "src/Helpers/str_pos.php",
+            "src/Helpers/str_ordinal.php",
+            "src/Helpers/pretty_date.php",
+            "src/Helpers/redirectBack.php",
+            "src/Helpers/getFieldMaxLength.php"
+        ]
+    }
+}
+
